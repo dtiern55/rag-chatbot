@@ -1,0 +1,3 @@
+boto3
+PyPDF2 # Extract from PDFs
+python-docx # Extract from Word documents

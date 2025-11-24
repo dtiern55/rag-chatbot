@@ -4,7 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-black = "*"
+boto3 = "*"
+pypdf2 = "*"
+python-docx = "*"
 
 [requires]
-python_version = "3.14"
+python_version = "3.13"
+
+[dev-packages]
+black = "*"
