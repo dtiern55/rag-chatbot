@@ -4,10 +4,21 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "repo_name" {
+  type    = string
+  default = "rag-chatbot"
+}
+
+variable "aws_region" {
+  description = "AWS region to deploy resources in"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "bucket_prefix" {
   description = "Prefix used for S3 bucket names"
   type        = string
-  default     = "pii-redaction-pipeline"
+  default     = "rag-chatbot"
 }
 
 variable "force_destroy" {

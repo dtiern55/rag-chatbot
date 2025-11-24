@@ -58,7 +58,7 @@ resource "aws_s3_bucket_public_access_block" "input_block" {
 }
 
 resource "aws_s3_bucket" "output" {
-  bucket = local.output_bucket_name
+  bucket        = local.output_bucket_name
   force_destroy = var.force_destroy
 
   tags = {
@@ -101,9 +101,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "output" {
     }
   }
 }
-
-
-
 
 resource "aws_s3_bucket_public_access_block" "output_block" {
   bucket = aws_s3_bucket.output.id
