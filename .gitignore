@@ -27,3 +27,8 @@ Thumbs.db
 
 # Lambda deployment packages
 **/lambdas/**/*.zip
+
+# Lambda dependencies
+lambdas/*/
+!lambdas/*/lambda_function.py
+!lambdas/*/requirements.txt
