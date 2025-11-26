@@ -29,7 +29,7 @@ def lambda_handler(event, context):
 
     formatted_chunks = []
     for i, chunk in enumerate(chunks):
-        formatted_chunks.append_idx(
+        formatted_chunks.append(
             {
                 "chunk_index": i,
                 "chunk_text": chunk,
