@@ -1,11 +1,11 @@
-import json
 import boto3
 import os
-import datetime
+from datetime import datetime
+from decimal import Decimal
 
 dynamodb = boto3.resource("dynamodb")
-table_name = os.environ.get("DYNAMODB_TABLE")  # TODO: Set this in terraform
-table = dynamodb
+table_name = os.environ.get("DYNAMODB_TABLE_NAME")
+table = dynamodb.Table(table_name)
 
 
 def lambda_handler(event, context):
@@ -80,10 +80,10 @@ def store_chunk(document_id, filename, chunk, metadata):
         # Unique identifier (for GSI)
         "chunk_id": chunk_id,
         # Content
-        "text": chunk["text"],
+        "text": chunk["chunk_text"],
         "word_count": chunk["word_count"],
-        # Embedding (storing in DynamoDB for now, will move to LanceDB later)
-        "embedding": chunk["embedding"],
+        # Embedding
+        # "embedding": chunk["embedding"], # Comment out - will store in LanceDB once set up
         # Document metadata
         "filename": filename,
         "file_type": metadata.get("file_type", ""),

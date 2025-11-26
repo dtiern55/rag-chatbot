@@ -1,25 +1,29 @@
 # Terraform
-**/.terraform/
-**/.terraform.lock.hcl
-**/*.tfstate
-**/*.tfstate.*
-**/*.tfstate.backup
-**/*.tfvars  # If you have sensitive data in tfvars
+.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
 
 # Python
-**/__pycache__/
-**/*.pyc
-**/*.pyo
-**/*.pyd
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 .Python
-**/venv/
-**/env/
+*.egg-info/
+.venv/
+venv/
+env/
 
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS
 .DS_Store
@@ -32,3 +36,11 @@ Thumbs.db
 lambdas/*/
 !lambdas/*/lambda_function.py
 !lambdas/*/requirements.txt
+
+# Test files
+test-event.json
+test-document.txt
+response.json
+*.txt.bak
+
+EOF
