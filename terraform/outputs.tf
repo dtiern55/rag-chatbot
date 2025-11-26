@@ -35,3 +35,8 @@ output "output_bucket_name" {
   description = "Name of the output S3 bucket"
   value       = aws_s3_bucket.output.bucket
 }
+
+output "state_machine_arn" {
+  description = "ARN of the Step Functions state machine"
+  value       = aws_sfn_state_machine.document_processor.arn
+}

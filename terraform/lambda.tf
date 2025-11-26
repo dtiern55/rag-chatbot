@@ -49,7 +49,7 @@ resource "aws_lambda_function" "text_chunker" {
       ENVIRONMENT = var.environment
     }
   }
-  
+
   tags = {
     Name        = "${var.repo_name}-text-chunker"
     Environment = var.environment
@@ -83,7 +83,7 @@ resource "aws_lambda_function" "embedding_generator" {
       EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v1"
     }
   }
-  
+
   tags = {
     Name        = "${var.repo_name}-embedding-generator"
     Environment = var.environment
@@ -110,14 +110,14 @@ resource "aws_lambda_function" "data_storer" {
 
   timeout     = 60
   memory_size = 256
-  
+
   environment {
     variables = {
       ENVIRONMENT         = var.environment
       DYNAMODB_TABLE_NAME = aws_dynamodb_table.metadata.name
     }
   }
-  
+
   tags = {
     Name        = "${var.repo_name}-data-storer"
     Environment = var.environment
