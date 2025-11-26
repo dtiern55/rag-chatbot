@@ -4,12 +4,24 @@ resource "aws_lambda_function" "text_extractor" {
   role          = aws_iam_role.lambda_exec.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.13"
-  
+
   filename         = data.archive_file.text_extractor.output_path
   source_code_hash = data.archive_file.text_extractor.output_base64sha256
-  
-  timeout = 60
+
+  timeout     = 60
   memory_size = 256
+
+  environment {
+    variables = {
+      ENVIRONMENT = var.environment
+    }
+  }
+
+  tags = {
+    Name        = "${var.repo_name}-text-extractor"
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+  }
 }
 
 # Zip Text Extractor Lambda code
@@ -25,12 +37,24 @@ resource "aws_lambda_function" "text_chunker" {
   role          = aws_iam_role.lambda_exec.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.13"
-  
+
   filename         = data.archive_file.text_chunker.output_path
   source_code_hash = data.archive_file.text_chunker.output_base64sha256
-  
-  timeout = 60
+
+  timeout     = 60
   memory_size = 256
+
+  environment {
+    variables = {
+      ENVIRONMENT = var.environment
+    }
+  }
+  
+  tags = {
+    Name        = "${var.repo_name}-text-chunker"
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+  }
 }
 
 # Zip Text Chunker Lambda code
@@ -46,12 +70,25 @@ resource "aws_lambda_function" "embedding_generator" {
   role          = aws_iam_role.lambda_exec.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.13"
-  
+
   filename         = data.archive_file.embedding_generator.output_path
   source_code_hash = data.archive_file.embedding_generator.output_base64sha256
-  
-  timeout = 60
+
+  timeout     = 60
   memory_size = 256
+
+  environment {
+    variables = {
+      ENVIRONMENT        = var.environment
+      EMBEDDING_MODEL_ID = "amazon.titan-embed-text-v1"
+    }
+  }
+  
+  tags = {
+    Name        = "${var.repo_name}-embedding-generator"
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+  }
 }
 
 # Zip Embedding Generator Lambda code
@@ -67,12 +104,25 @@ resource "aws_lambda_function" "data_storer" {
   role          = aws_iam_role.lambda_exec.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.13"
-  
+
   filename         = data.archive_file.data_storer.output_path
   source_code_hash = data.archive_file.data_storer.output_base64sha256
-  
-  timeout = 60
+
+  timeout     = 60
   memory_size = 256
+  
+  environment {
+    variables = {
+      ENVIRONMENT         = var.environment
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.metadata.name
+    }
+  }
+  
+  tags = {
+    Name        = "${var.repo_name}-data-storer"
+    Environment = var.environment
+    ManagedBy   = "Terraform"
+  }
 }
 
 # Zip Data Storer Lambda code
