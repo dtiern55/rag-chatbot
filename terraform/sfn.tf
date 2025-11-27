@@ -55,7 +55,7 @@ resource "aws_sfn_state_machine" "document_processor" {
           {
             ErrorEquals     = ["States.ALL"]
             IntervalSeconds = 2
-            MaxAttempts     = 2
+            MaxAttempts     = 0
             BackoffRate     = 2.0
           }
         ]
@@ -74,7 +74,7 @@ resource "aws_sfn_state_machine" "document_processor" {
           {
             ErrorEquals     = ["States.ALL"]
             IntervalSeconds = 2
-            MaxAttempts     = 2
+            MaxAttempts     = 0
             BackoffRate     = 2.0
           }
         ]
@@ -93,7 +93,7 @@ resource "aws_sfn_state_machine" "document_processor" {
           {
             ErrorEquals     = ["States.ALL"]
             IntervalSeconds = 2
-            MaxAttempts     = 2
+            MaxAttempts     = 0
             BackoffRate     = 2.0
           }
         ]
@@ -112,7 +112,7 @@ resource "aws_sfn_state_machine" "document_processor" {
           {
             ErrorEquals     = ["States.ALL"]
             IntervalSeconds = 2
-            MaxAttempts     = 2
+            MaxAttempts     = 0
             BackoffRate     = 2.0
           }
         ]
