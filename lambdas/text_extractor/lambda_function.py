@@ -32,12 +32,11 @@ def lambda_handler(event, context):
     # Step 3: Determine file type and extract text
     filename = os.path.basename(key)
     print(
-        f"Extracting text from file: {filename} " f"(filename = os.path.basename(key))"
+        f"Extracting text from file: {filename}"
     )
     file_extension = os.path.splitext(filename)[1].lower()
     print(
         f"File extension: {file_extension} "
-        f"(file_extension = os.path.splitext(filename)[1].lower())"
     )
 
     if file_extension == ".pdf":
