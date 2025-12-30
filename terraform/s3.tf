@@ -42,6 +42,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "input" {
     id     = "default-expiration"
     status = "Enabled"
 
+    filter {}
+
     expiration {
       days = 30
     }
@@ -95,6 +97,8 @@ resource "aws_s3_bucket_lifecycle_configuration" "output" {
   rule {
     id     = "default-expiration"
     status = "Enabled"
+
+    filter {}
 
     expiration {
       days = 30
