@@ -107,7 +107,7 @@ resource "aws_sfn_state_machine" "document_processor" {
       StoreData = {
         Type     = "Task"
         Resource = aws_lambda_function.data_storer.arn
-        Next      = "ProcessingComplete"
+        Next     = "ProcessingComplete"
         Retry = [
           {
             ErrorEquals     = ["States.ALL"]
