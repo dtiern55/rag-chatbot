@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastapi
+  namespace: rag-chatbot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fastapi
+  template:
+    metadata:
+      labels:
+        app: fastapi
+    spec:
+      serviceAccountName: fastapi
+      containers:
+      - name: fastapi
+        image: 942497601151.dkr.ecr.us-east-1.amazonaws.com/rag-chatbot-fastapi-dev:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: LANCEDB_PATH
+          value: "/data/lancedb"
+        - name: DYNAMODB_TABLE_NAME
+          value: "rag-chatbot-metadata-dev"
+        - name: AWS_REGION
+          value: "us-east-1"
+        volumeMounts:
+        - name: lancedb-storage
+          mountPath: /data/lancedb
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: lancedb-storage
+        persistentVolumeClaim:
+          claimName: lancedb-storage

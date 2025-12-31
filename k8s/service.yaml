@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fastapi
+  namespace: rag-chatbot
+spec:
+  type: LoadBalancer
+  selector:
+    app: fastapi
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
